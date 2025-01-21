@@ -1,14 +1,13 @@
 <script setup>
-    import FooterComponent from "./components/FooterComponent.vue";
     import { ref, reactive } from "vue";
     import { db } from "./data/guitarras";
 
-    const state = reactive({
-        guitarras: db
-    });
+    import FooterComponent from "./components/FooterComponent.vue";
+    import Guitar from "./components/Guitar.vue";
 
-    console.log(state.guitarras);
+    const guitars = ref(db);
 
+    console.log(guitars.value);
 </script>
 
 <template>
@@ -101,22 +100,9 @@
         <h2 class="text-center">Nuestra Colección</h2>
 
         <div class="row mt-5">
-            <div class="col-md-6 col-lg-4 my-4 row align-items-center">
-                <div class="col-4">
-                    <img class="img-fluid" src="/img/guitarra_01.jpg" alt="imagen guitarra">
-                </div>
-                <div class="col-8">
-                    <h3 class="text-black fs-4 fw-bold text-uppercase">Lukather</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit quae labore odit magnam in autem nesciunt, amet deserunt</p>
-                    <p class="fw-black text-primary fs-3">299 €</p>
-                    <button 
-                        type="button"
-                        class="btn btn-dark w-100 "
-                    >Agregar al Carrito</button>
-                </div>
-            </div><!-- FIN GUITARRA -->
+            <Guitar v-for="guitar in guitars" :guitar="guitar" />
         </div>
     </main>
-    
+
     <FooterComponent />
 </template>
