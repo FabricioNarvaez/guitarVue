@@ -24,8 +24,13 @@
     const cart = ref([]);
 
     const agregarCarrito = (guitar) => {
-        cart.value.push(guitar);
-        guitar.amount = 1;
-        console.log(cart.value);
+        const existItem = cart.value.find((item) => item.id === guitar.id);
+        if (existItem) {
+            existItem.amount++;
+        } else {
+            cart.value.push(guitar);
+            guitar.amount = 1;
+            console.log(cart.value);
+        }
     }
 </script>
