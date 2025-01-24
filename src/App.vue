@@ -1,15 +1,3 @@
-<script setup>
-    import { ref, reactive } from "vue";
-    import { db } from "./data/guitarras";
-
-    import FooterComponent from "./components/FooterComponent.vue";
-    import Guitar from "./components/Guitar.vue";
-
-    const guitars = ref(db);
-
-    console.log(guitars.value);
-</script>
-
 <template>
     <header class="py-5 header">
         <div class="container-xl">
@@ -100,9 +88,23 @@
         <h2 class="text-center">Nuestra Colección</h2>
 
         <div class="row mt-5">
-            <Guitar v-for="guitar in guitars" :guitar="guitar" />
+            <Guitar v-for="guitar in guitars" :guitar="guitar" @incrementar="agregarCarrito" />
         </div>
     </main>
 
     <FooterComponent />
 </template>
+
+<script setup>
+    import { ref, reactive } from "vue";
+    import { db } from "./data/guitarras";
+
+    import FooterComponent from "./components/FooterComponent.vue";
+    import Guitar from "./components/Guitar.vue";
+
+    const guitars = ref(db);
+
+    const agregarCarrito = () => {
+        console.log("agregarCarrito");
+    }
+</script>
