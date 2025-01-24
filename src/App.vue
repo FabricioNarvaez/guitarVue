@@ -88,7 +88,7 @@
         <h2 class="text-center">Nuestra Colección</h2>
 
         <div class="row mt-5">
-            <Guitar v-for="guitar in guitars" :guitar="guitar" @incrementar="agregarCarrito" />
+            <Guitar v-for="guitar in guitars" :guitar="guitar" @agregarCarrito="agregarCarrito" />
         </div>
     </main>
 
