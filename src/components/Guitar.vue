@@ -7,7 +7,7 @@
             <h3 class="text-black fs-4 fw-bold text-uppercase">{{ guitar.nombre }}</h3>
             <p>{{ guitar.descripcion }}</p>
             <p class="fw-black text-primary fs-3">{{ guitar.precio }} €</p>
-            <button @click="$emit('agregarCarrito')" type="button" class="btn btn-dark w-100 ">Agregar al Carrito</button>
+            <button @click="$emit('agregarCarrito', guitar)" type="button" class="btn btn-dark w-100 ">Agregar al Carrito</button>
         </div>
     </div><!-- FIN GUITARRA -->
 </template>

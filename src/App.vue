@@ -104,7 +104,7 @@
 
     const guitars = ref(db);
 
-    const agregarCarrito = () => {
-        console.log("agregarCarrito");
+    const agregarCarrito = (guitar) => {
+        console.log(guitar);
     }
 </script>
