@@ -1,5 +1,5 @@
 <template>
-    <HeaderComponent />
+    <HeaderComponent :cart="cart"/>
 
     <main class="container-xl mt-5">
         <h2 class="text-center">Nuestra Colección</h2>
@@ -26,5 +26,6 @@
     const agregarCarrito = (guitar) => {
         cart.value.push(guitar);
         guitar.amount = 1;
+        console.log(cart.value);
     }
 </script>
