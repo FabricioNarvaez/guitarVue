@@ -103,8 +103,10 @@
     import Guitar from "./components/Guitar.vue";
 
     const guitars = ref(db);
+    const cart = ref([]);
 
     const agregarCarrito = (guitar) => {
-        console.log(guitar);
+        cart.value.push(guitar);
+        guitar.amount = 1;
     }
 </script>
