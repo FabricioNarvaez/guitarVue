@@ -34,11 +34,11 @@
                                             <td>{{ cartItem.nombre }}</td>
                                             <td class="fw-bold">{{ cartItem.precio }}</td>
                                             <td class="flex align-items-start gap-4">
-                                                <button type="button" class="btn btn-dark">
+                                                <button @click="decreaseAmount(cartItem)" type="button" class="btn btn-dark">
                                                     -
                                                 </button>
                                                 {{ cartItem.amount }}
-                                                <button type="button" class="btn btn-dark">
+                                                <button @click="increaseAmount(cartItem)" type="button" class="btn btn-dark">
                                                     +
                                                 </button>
                                             </td>
@@ -51,7 +51,7 @@
                                     </tbody>
                                 </table>
 
-                                <p class="text-end">Total pagar: <span class="fw-bold">$899</span></p>
+                                <p class="text-end">Total pagar: <span class="fw-bold">{{ cartTotal }} €</span></p>
                                 <button class="btn btn-dark w-100 mt-3 p-2">Vaciar Carrito</button>
                             </div>
                         </div>
@@ -77,7 +77,9 @@
 </template>
 
 <script setup>
-    defineProps({
+    import { computed } from 'vue';
+
+    const props = defineProps({
         cart: {
             type: Array,
             required: true
@@ -87,6 +89,11 @@
             required: true
         }
     });
+    
+    const cartTotal = computed(() => props.cart.reduce((acc, item) => acc + item.precio * item.amount, 0));
+
+    const increaseAmount = (guitar)=> { guitar.amount++ };
+    const decreaseAmount = (guitar)=> { if(guitar.amount > 0) guitar.amount-- };
     
     defineEmits(['agregarCarrito']);
 </script>
