@@ -17,8 +17,8 @@
     import { ref, reactive, onMounted, watch } from "vue";
     import { db } from "./data/guitarras";
 
-    import HeaderComponent from "./components/HeaderComponent.vue";
-    import FooterComponent from "./components/FooterComponent.vue";
+    import HeaderComponent from "./components/Header.vue";
+    import FooterComponent from "./components/Footer.vue";
     import Guitar from "./components/Guitar.vue";
 
     const guitars = ref(db);
