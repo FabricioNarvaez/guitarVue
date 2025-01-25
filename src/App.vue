@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-    import { ref, reactive } from "vue";
+    import { ref, reactive, onMounted, watch } from "vue";
     import { db } from "./data/guitarras";
 
     import HeaderComponent from "./components/HeaderComponent.vue";
@@ -28,6 +28,10 @@
     const promoGuitarName = "VAI";
     promoGuitar.value = guitars.value.find((guitar) => guitar.nombre === promoGuitarName);
 
+    const saveCartOnLocalStorage = () => {
+        localStorage.setItem('cart', JSON.stringify(cart.value));
+    }
+
     const agregarCarrito = (guitar) => {
         const existItem = cart.value.find((item) => item.id === guitar.id);
         if (existItem) {
@@ -35,7 +39,7 @@
         } else {
             cart.value.push(guitar);
             guitar.amount = 1;
-        }
+        };
     };
 
     const emptyCart = () => {
@@ -45,5 +49,14 @@
     const deleteGuitar = (guitar) =>{
         const foundIndex = cart.value.findIndex(item => item.id === guitar.id);
         cart.value.splice(foundIndex, 1);
-    }
+    };
+
+    onMounted(()=>{
+        const cartStorage = localStorage.getItem('cart');
+        if(cartStorage){
+            cart.value = JSON.parse(cartStorage);
+        }
+
+        watch(cart.value, ()=>{saveCartOnLocalStorage();});
+    });
 </script>
