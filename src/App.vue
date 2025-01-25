@@ -1,5 +1,5 @@
 <template>
-    <HeaderComponent :cart="cart" :promoGuitar="promoGuitar" @agregarCarrito="agregarCarrito"/>
+    <HeaderComponent :cart="cart" :promoGuitar="promoGuitar" @agregarCarrito="agregarCarrito" @emptyCart="emptyCart"/>
 
     <main class="container-xl mt-5">
         <h2 class="text-center">Nuestra Colección</h2>
@@ -34,7 +34,10 @@
         } else {
             cart.value.push(guitar);
             guitar.amount = 1;
-            console.log(cart.value);
         }
-    }
+    };
+
+    const emptyCart = () => {
+        cart.value = [];
+    };
 </script>

@@ -52,7 +52,7 @@
                                 </table>
 
                                 <p class="text-end">Total pagar: <span class="fw-bold">{{ cartTotal }} €</span></p>
-                                <button class="btn btn-dark w-100 mt-3 p-2">Vaciar Carrito</button>
+                                <button @click="$emit('emptyCart')" class="btn btn-dark w-100 mt-3 p-2">Vaciar Carrito</button>
                             </div>
                         </div>
                     </div>
@@ -95,5 +95,5 @@
     const increaseAmount = (guitar)=> { guitar.amount++ };
     const decreaseAmount = (guitar)=> { if(guitar.amount > 0) guitar.amount-- };
     
-    defineEmits(['agregarCarrito']);
+    defineEmits(['agregarCarrito', 'emptyCart']);
 </script>
