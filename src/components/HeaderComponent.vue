@@ -41,7 +41,7 @@
                                                 </button>
                                             </td>
                                             <td>
-                                                <button class="btn btn-danger" type="button">
+                                                <button @click="$emit('deleteGuitar', cartItem)" class="btn btn-danger" type="button">
                                                     X
                                                 </button>
                                             </td>
@@ -93,5 +93,5 @@
     const increaseAmount = (guitar)=> { guitar.amount++ };
     const decreaseAmount = (guitar)=> { if(guitar.amount > 0) guitar.amount-- };
     
-    defineEmits(['agregarCarrito', 'emptyCart']);
+    defineEmits(['agregarCarrito', 'emptyCart', 'deleteGuitar']);
 </script>

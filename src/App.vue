@@ -1,5 +1,6 @@
 <template>
-    <HeaderComponent :cart="cart" :promoGuitar="promoGuitar" @agregarCarrito="agregarCarrito" @emptyCart="emptyCart"/>
+    <HeaderComponent :cart="cart" :promoGuitar="promoGuitar"
+    @agregarCarrito="agregarCarrito" @emptyCart="emptyCart" @deleteGuitar="deleteGuitar"/>
 
     <main class="container-xl mt-5">
         <h2 class="text-center">Nuestra Colección</h2>
@@ -40,4 +41,9 @@
     const emptyCart = () => {
         cart.value = [];
     };
+
+    const deleteGuitar = (guitar) =>{
+        const foundIndex = cart.value.findIndex(item => item.id === guitar.id);
+        cart.value.splice(foundIndex, 1);
+    }
 </script>
