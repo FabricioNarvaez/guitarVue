@@ -57,17 +57,7 @@
                 </nav>
             </div>
 
-            <div class="row mt-5">
-                <div class="col-md-6 text-center text-md-start pt-5">
-                    <h1 class="display-2 fw-bold">Modelo {{ promoGuitar.nombre }}</h1>
-                    <p class="mt-5 fs-5 text-white">{{ promoGuitar.descripcion }}</p>
-                    <p class="text-primary fs-1 fw-black">{{ promoGuitar.precio }} €</p>
-                    <button @click="$emit('agregarCarrito', promoGuitar)"
-                        type="button"
-                        class="btn fs-4 bg-primary text-white py-2 px-5"
-                    >Agregar al Carrito</button>
-                </div>
-            </div>
+            <PromoGuitar :promoGuitar="promoGuitar" @agregarCarrito="handleAgregarCarrito"/>
         </div>
 
         <img class="header-guitarra" src="/img/header_guitarra.png" alt="imagen header">
@@ -76,6 +66,8 @@
 
 <script setup>
     import { computed } from 'vue';
+
+    import PromoGuitar from './PromoGuitar.vue';
 
     const props = defineProps({
         cart: {
@@ -87,11 +79,14 @@
             required: true
         }
     });
+
+    const emit = defineEmits(['agregarCarrito', 'emptyCart', 'deleteGuitar']);
     
     const cartTotal = computed(() => props.cart.reduce((acc, item) => acc + item.precio * item.amount, 0));
 
     const increaseAmount = (guitar)=> { guitar.amount++ };
     const decreaseAmount = (guitar)=> { if(guitar.amount > 0) guitar.amount-- };
+    const handleAgregarCarrito = (guitar)=> {emit('agregarCarrito', guitar)};
     
-    defineEmits(['agregarCarrito', 'emptyCart', 'deleteGuitar']);
+    
 </script>
