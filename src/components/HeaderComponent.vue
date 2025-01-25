@@ -8,9 +8,7 @@
                     </a>
                 </div>
                 <nav class="col-md-6 a mt-5 d-flex align-items-start justify-content-end">
-                    <div 
-                        class="carrito"
-                    >
+                    <div class="carrito">
                         <img class="img-fluid" src="/img/carrito.png" alt="imagen carrito" />
 
                         <div id="carrito" class="bg-white p-3">
@@ -57,7 +55,7 @@
                         </div>
                     </div>
                 </nav>
-            </div><!--.row-->
+            </div>
 
             <div class="row mt-5">
                 <div class="col-md-6 text-center text-md-start pt-5">
