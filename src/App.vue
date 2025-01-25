@@ -1,5 +1,5 @@
 <template>
-    <HeaderComponent :cart="cart"/>
+    <HeaderComponent :cart="cart" :promoGuitar="promoGuitar" @agregarCarrito="agregarCarrito"/>
 
     <main class="container-xl mt-5">
         <h2 class="text-center">Nuestra Colección</h2>
@@ -22,6 +22,10 @@
 
     const guitars = ref(db);
     const cart = ref([]);
+    const promoGuitar = ref({});
+
+    const promoGuitarName = "VAI";
+    promoGuitar.value = guitars.value.find((guitar) => guitar.nombre === promoGuitarName);
 
     const agregarCarrito = (guitar) => {
         const existItem = cart.value.find((item) => item.id === guitar.id);
