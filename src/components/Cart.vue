@@ -7,9 +7,9 @@
         </div>
         <nav class="col-md-6 a mt-5 d-flex align-items-start justify-content-end">
             <div class="carrito">
-                <img class="img-fluid" src="/img/carrito.png" alt="imagen carrito" />
+                <img @click="toggleCart" class="img-fluid cartImage" src="/img/carrito.png" alt="imagen carrito" />
 
-                <div id="carrito" class="bg-white p-3">
+                <div id="carrito" :class="{'cartActive': isCartOpened}" class="bg-white p-3">
                     <p v-if="!cart.length" class="text-center">El carrito esta vacío</p>
                     <div v-else>
                         <table class="w-100 table">
@@ -57,8 +57,9 @@
 </template>
 
 <script setup>
-    import { computed } from 'vue';
+    import { computed, ref } from 'vue';
 
+    const isCartOpened = ref(false);
     const props = defineProps({
         cart: {
             type: Array,
@@ -66,9 +67,19 @@
         }
     });
 
-    const cartTotal = computed(() => props.cart.reduce((acc, item) => acc + item.precio * item.amount, 0));
+    const toggleCart = () => { isCartOpened.value = !isCartOpened.value;};const cartTotal = computed(() => props.cart.reduce((acc, item) => acc + item.precio * item.amount, 0));
     
     const increaseAmount = (guitar)=> { guitar.amount++ };
     const decreaseAmount = (guitar)=> { if(guitar.amount > 0) guitar.amount-- };
    
 </script>
+
+<style>
+    .cartImage {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .cartImage:hover {
+        transform: scale(1.2);
+    }
+</style>
